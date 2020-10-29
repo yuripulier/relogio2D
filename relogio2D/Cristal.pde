@@ -50,26 +50,66 @@ public class Cristal {
     this.radius = _radius;
   }
   
+  // Acende a luz do visor
+  public void setLight() {
+    // Luz Gradiente
+    float grad = 0;
+    for(int r = 0; r <= radius; r++){
+      stroke(10*red(c)-grad,10*green(c)-grad,10*blue(c)-grad);
+      ellipse(posX, posY, radius-r, radius-r);
+      grad = grad + 1;
+    }
+  }
+  
   void display(){
     // Fundo
     stroke(red(c)/2,green(c)/2,blue(c)/2);
-    strokeWeight(1);
+    strokeWeight(5);
     fill(red(c),green(c),blue(c));
     ellipse(posX,posY,radius,radius);
-    // Marcaçoes
+    
+    // Borda do Cristal
+    float grad = 0;
+    for(int r = 0; r <= radius; r++){
+      if (5*red(c)-grad < red(c)) grad = 0;
+      stroke(5*red(c)-grad,5*green(c)-grad,5*blue(c)-grad);
+      ellipse(posX, posY, radius-r, radius-r);
+      if (5*red(c)-grad > red(c)) grad = grad + 4;
+    }
+    
+    // Marcaçoes de 1 a 12
     stroke(100,100,100);
     strokeWeight(2.5);
-    line(posX, posY-110, posX, posY-85);  // 12
-    //line(posX+57.6, posY-52.4, posX+55, posY-27.4);  // 1   tentando realizar as macacoes, mas ja ta tarde e vou deixar pra depois hehe
-    line(posX, posY-110, posX, posY-85);  // 2
-    line(posX+85, posY, posX+110, posY);  // 3
-    line(posX, posY-110, posX, posY-85);  // 4
-    line(posX, posY-110, posX, posY-85);  // 5
-    line(posX, posY+85, posX, posY+110);  // 6
-    line(posX, posY-110, posX, posY-85);  // 7
-    line(posX, posY-110, posX, posY-85);  // 8
-    line(posX-110, posY, posX-85, posY);  // 9
-    line(posX, posY-110, posX, posY-85);  // 10
-    line(posX, posY-110, posX, posY-85);  // 11
+    int hour = 3;
+    for (float i = 0; i < 2*PI; i+= PI/6){
+      float Px1 = posX + cos(i) * (radius-175);
+      float Py1 = posY + sin(i) * (radius-175);
+      float Px2 = posX + cos(i) * (radius-150);
+      float Py2 = posY + sin(i) * (radius-150);
+      float Px3 = posX + cos(i) * (radius-139);
+      float Py3 = posY+5 + sin(i) * (radius-139);
+      strokeWeight(2.5);
+      line(Px1, Py1, Px2, Py2);
+      // Numeros
+      textFont(f);
+      textAlign(CENTER);
+      fill(200,200,200);      // cor do texto
+      if(hour<=12) text(str(hour), Px3, Py3);
+      if(hour==13) text(str(1), Px3, Py3);
+      if(hour==14) text(str(2), Px3, Py3);
+      hour = hour + 1;
+    }
+    
+    // Marcaçoes dos minutos
+    stroke(100,100,100);
+    strokeWeight(2);
+    for (float i = 0; i < 2*PI; i+= PI/30){
+      float Px1 = posX + cos(i) * (radius-150);
+      float Py1 = posY + sin(i) * (radius-150);
+      float Px2 = posX + cos(i) * (radius-155);
+      float Py2 = posY + sin(i) * (radius-155);
+      fill(220,0,0);  // LINHA VERMELHA NO CRISTAL
+      line(Px1, Py1, Px2, Py2);
+    } 
   }
 }
