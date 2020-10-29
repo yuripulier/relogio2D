@@ -3,7 +3,7 @@ PImage img;
 // Declarar os objetos
 Bisel bisel;
 Cristal cristal;
-Ponteiro ponteiroSec, ponteiroMin, ponteiroHour;
+Ponteiro ponteiroS, ponteiroM, ponteiroH;
 
 // Inicializar os objetos
 void setup(){
@@ -15,6 +15,9 @@ void setup(){
   float centerY = height/2;
   bisel = new Bisel(color(30,30,30), centerX, centerY, 280, 25);
   cristal = new Cristal(color(20,20,20), centerX, centerY, 260);
+  ponteiroS = new Ponteiro();
+  ponteiroM = new Ponteiro();
+  ponteiroH = new Ponteiro();
 }
 
 // Chamar métodos dos objetos
@@ -24,4 +27,7 @@ void draw(){
   image(img,210,87);
   bisel.display();
   cristal.display();
+  ponteiroS.display();
+  ponteiroM.display();
+  ponteiroH.display();
 }
