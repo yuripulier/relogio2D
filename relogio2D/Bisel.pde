@@ -7,11 +7,11 @@ public class Bisel {
 
   // Construtor e seus argumentos
   public Bisel(color _c, float _posX, float _posY, float _radius, float _breadth) {
-    this.c = _c;
-    this.posX = _posX;
-    this.posY = _posY;
-    this.radius = _radius;
-    this.breadth = _breadth;
+    this.setColor(_c);
+    this.setPosX(_posX);
+    this.setPosY(_posY);
+    this.setRadius(_radius);
+    this.setBreadth(_breadth);
   }
   
   //Default
@@ -56,7 +56,7 @@ public class Bisel {
     this.breadth = _breadth;
   }
   
-  void display(){
+  public void display(){
     int c2 = 60;
     float r = 3;
     ellipseMode(CENTER);
@@ -80,5 +80,9 @@ public class Bisel {
     stroke(red(c)-c2/2,green(c)-c2/2,blue(c)-c2/2);
     strokeWeight(breadth/10);
     ellipse(posX,posY,radius-r*3,radius-r*3);
+    // Aureola 6 - Circulo vermelho
+    stroke(220,0,0);
+    strokeWeight(breadth/10);
+    ellipse(posX,posY,radius-r*4,radius-r*4);
   }
 }
