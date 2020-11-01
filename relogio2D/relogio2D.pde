@@ -12,12 +12,6 @@ Coroa coroa = new Coroa();
 Pulseira pulseira = new Pulseira();
 Relogio relogio = new Relogio();
 
-// Variáveis utilizadas para o zoom
-float wheelCount = 0;
-float mx=0;
-float my=0;
-float zoom=1;
-
 // Inicializar os objetos
 void setup(){
   // Tamanho, antialiasing e fundo

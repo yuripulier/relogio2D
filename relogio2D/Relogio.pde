@@ -1,8 +1,4 @@
 public class Relogio {
-  private float wheelCount = 0;
-  private float mx=0;
-  private float my=0;
-  private float zoom=1;
   private Bisel bisel;
   private Coroa coroa;
   private Cristal cristal;
@@ -84,18 +80,19 @@ public class Relogio {
   public void display() {
     // Atualizando ponteiros
     float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
-    float m = map(minute(), 0, 60, 0, TWO_PI) - HALF_PI;   // minute() + norm(second(), 0, 60) -> para que os minutos caminhem com o passar dos segundos
-    float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+    float m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI; 
+    float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) -(2*PI)/3;
     this.getPonteiroS().setTime(s);
     this.getPonteiroM().setTime(m);
     this.getPonteiroH().setTime(h);
+    
     // Display completo do relógio
+    this.getPulseira().display();
     this.getBisel().display();
     this.getCristal().display();
     this.getPonteiroS().display();
     this.getPonteiroM().display();
     this.getPonteiroH().display();
-    this.getPulseira().display();
     this.getCoroa().display();
   }
 }

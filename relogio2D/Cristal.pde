@@ -55,8 +55,9 @@ public class Cristal {
     this.radius = _radius;
   }
   
-  public void setDay() {
+  private void setDay() {
     int d = day();
+    if(hour() == 0) d = d - 1;
     this.day = d;
   }
   
@@ -148,8 +149,5 @@ public class Cristal {
     
     fill(fColor);
     text(getDay(), posX+radius/8 + 13, posY+radius/5 - 5);
-    
-    
-    
   }
 }
