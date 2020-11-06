@@ -74,6 +74,7 @@ public class Cristal {
     }
   }
   
+  // Display do Cristal
   public void display(){
     color fColor = color(200,200,200);
     // Fundo

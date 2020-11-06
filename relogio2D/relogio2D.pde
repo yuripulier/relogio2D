@@ -16,6 +16,9 @@ Coroa coroa = new Coroa();
 Pulseira pulseira = new Pulseira();
 Relogio relogio = new Relogio();
 
+// Variáveis globais
+String PATH_FILE = "C:/Users/yuric/Desktop/relogio2D/video.mp4";  // Caminho completo do arquivo de video é necessário.
+
 // Inicializar os objetos
 void setup(){
   // Tamanho, antialiasing e fundo
@@ -24,13 +27,6 @@ void setup(){
   background(255);
   // Imagem da pulseira
   img = loadImage("pulseira.png");
-  
-  println("================================MENU================================");
-  print("Movimentar o Relógio - Botão esquerdo apenas no circulo do relógio. \n");
-  print("Luz                  - Botão direito apenas no botão do relógio. \n");
-  print("Stop/Play da música  - Tecla M para pausar e P para o play. \n");
-  print("Pause do ponteiro    - Tecla S para pausar o ponteiro do relógio. \n");
-  println("====================================================================");
   
   // Fontes de texto utilizadas
   f = createFont("Bahnschrift",14,true);
@@ -42,7 +38,7 @@ void setup(){
   music = new SoundFile(this, "music.mp3");
   music.play();
   music.loop();
-  video = new Movie(this, "C:/Users/ayrto/Documents/GitHub/relogio2D/relogio2D/video.mp4");
+  video = new Movie(this, PATH_FILE);
   video.frameRate(60);
   video.play();
   video.loop();
@@ -52,7 +48,7 @@ void setup(){
   float centerY = height/2;
   
   // Objetos utilizadas para criação do relógio
-  bisel = new Bisel(color(30,30,30), centerX, centerY, 280, 25);
+  bisel = new Bisel(color(30,30,30), color(60,60,60), centerX, centerY, 280, 25);
   coroa = new Coroa(color(30), 476, 215, 486, 215, 493, 225, 489, 237);
   cristal = new Cristal(color(20,20,20,100), centerX, centerY, 260);
   ponteiroS = new Ponteiro(color(70,70,70,0), color(70,70,70), 2.5, centerX, centerY, centerX, centerY - cristal.getRadius()/2.5, 0.0);
@@ -61,8 +57,17 @@ void setup(){
   pulseira = new Pulseira(img, 210, 87);
   // Objeto Relogio, que une cada classe das diferentes peças de um relógio
   relogio = new Relogio(bisel, coroa, cristal, ponteiroS, ponteiroM, ponteiroH, pulseira);
+  
+  // Menu
+  println("\n================================MENU================================");
+  print("Movimentar o Relógio - Botão esquerdo apenas no circulo do relógio. \n");
+  print("Luz                  - Botão direito apenas no botão do relógio. \n");
+  print("Stop/Play da música  - Tecla M para stop e P para o play. \n");
+  print("Pause do ponteiro    - Tecla S para pausar os ponteiros do relógio. \n");
+  println("====================================================================");
 }
 
+// Ambiente no qual o relogio está inserido
 void ambiente() {
   background(255);
   image(video, 0, -50, width+50, height+100);
@@ -73,7 +78,7 @@ void ambiente() {
 }
 
 void draw() {
-  // Musica e video do ambiente
+  // Musica, video e especificações do ambiente
   ambiente();
   // Display do relogio
   relogio.display();

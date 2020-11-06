@@ -1,13 +1,15 @@
 public class Bisel {
   private color c;
+  private color c2;
   private float posX;
   private float posY;
   private float radius;
   private float breadth;
 
   // Construtor e seus argumentos
-  public Bisel(color _c, float _posX, float _posY, float _radius, float _breadth) {
+  public Bisel(color _c, color _c2, float _posX, float _posY, float _radius, float _breadth) {
     this.setColor(_c);
+    this.setColor(_c2);
     this.setPosX(_posX);
     this.setPosY(_posY);
     this.setRadius(_radius);
@@ -16,12 +18,16 @@ public class Bisel {
   
   //Default
   public Bisel() {
-    this(color(0,0,0), 0.0, 0.0, 0.0, 0.0);
+    this(color(0,0,0), color(0,0,0), 0.0, 0.0, 0.0, 0.0);
   }
 
   //GET and SET
   public color getColor() {
     return this.c;
+  }
+  
+  public color getColor2() {
+    return this.c2;
   }
   
   public float getPosX() {
@@ -40,6 +46,10 @@ public class Bisel {
     this.c = _c;
   }
   
+  public void setColor2(color _c2) {
+    this.c2 = _c2;
+  }
+  
   public void setPosX(float _posX) {
     this.posX = _posX;
   }
@@ -56,6 +66,7 @@ public class Bisel {
     this.breadth = _breadth;
   }
   
+  // Display do Bisel
   public void display(){
     int c2 = 60;
     float r = 3;

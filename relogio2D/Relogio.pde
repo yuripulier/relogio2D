@@ -76,47 +76,67 @@ public class Relogio {
   public void setPulseira(Pulseira _pulseira) {
     this.pulseira = _pulseira;
   }
-    
+  
+  // Atualiza a posicao do relogio
+  private void setNewPos(float dx, float dy) {
+    // Bisel
+    this.getBisel().setPosX(this.getBisel().getPosX() + dx);
+    this.getBisel().setPosY(this.getBisel().getPosY() + dy);
+    // Coroa
+    this.getCoroa().setX1(this.getCoroa().getX1() + dx);
+    this.getCoroa().setY1(this.getCoroa().getY1() + dy);
+    this.getCoroa().setX2(this.getCoroa().getX2() + dx);
+    this.getCoroa().setY2(this.getCoroa().getY2() + dy);
+    this.getCoroa().setX3(this.getCoroa().getX3() + dx);
+    this.getCoroa().setY3(this.getCoroa().getY3() + dy);
+    this.getCoroa().setX4(this.getCoroa().getX4() + dx);
+    this.getCoroa().setY4(this.getCoroa().getY4() + dy);
+    // Cristal
+    this.getCristal().setPosX(this.getCristal().getPosX() + dx);
+    this.getCristal().setPosY(this.getCristal().getPosY() + dy);
+    // Ponteiro
+    this.getPonteiroS().setX1(this.getPonteiroS().getX1() + dx);
+    this.getPonteiroS().setY1(this.getPonteiroS().getY1() + dy);
+    this.getPonteiroM().setX1(this.getPonteiroM().getX1() + dx);
+    this.getPonteiroM().setY1(this.getPonteiroM().getY1() + dy);
+    this.getPonteiroH().setX1(this.getPonteiroH().getX1() + dx);
+    this.getPonteiroH().setY1(this.getPonteiroH().getY1() + dy);
+    this.getPonteiroS().setX2(this.getPonteiroS().getX2() + dx);
+    this.getPonteiroS().setY2(this.getPonteiroS().getY2() + dy);
+    this.getPonteiroM().setX2(this.getPonteiroM().getX2() + dx);
+    this.getPonteiroM().setY2(this.getPonteiroM().getY2() + dy);
+    this.getPonteiroH().setX2(this.getPonteiroH().getX2() + dx);
+    this.getPonteiroH().setY2(this.getPonteiroH().getY2() + dy);
+    // Pulseira
+    this.getPulseira().setPosX(this.getPulseira().getPosX() + dx);
+    this.getPulseira().setPosY(this.getPulseira().getPosY() + dy);
+  }
+  
+  // Atualiza as condicoes para que o deslocamento ocorra
   private void setDesloca() {
-    float r = sqrt(pow(abs(getCristal().getPosX() - mouseX),2) + pow(abs(getCristal().getPosY() - mouseY),2));
+    float r = sqrt(pow(abs(this.getCristal().getPosX() - mouseX),2) + pow(abs(this.getCristal().getPosY() - mouseY),2));
     // Deslocamento do relogio
-    if(mousePressed == true && mouseButton == LEFT && mouseX>0 && mouseX<width && mouseY>0 && mouseY<height) {
-      if( r <= getCristal().getRadius()/2 ){
-        // Bisel
-        this.getBisel().setPosX(this.getBisel().getPosX() + mouseX - pmouseX);
-        this.getBisel().setPosY(this.getBisel().getPosY() + mouseY - pmouseY);
-        // Coroa
-        this.getCoroa().setX1(this.getCoroa().getX1() + mouseX - pmouseX);
-        this.getCoroa().setY1(this.getCoroa().getY1() + mouseY - pmouseY);
-        this.getCoroa().setX2(this.getCoroa().getX2() + mouseX - pmouseX);
-        this.getCoroa().setY2(this.getCoroa().getY2() + mouseY - pmouseY);
-        this.getCoroa().setX3(this.getCoroa().getX3() + mouseX - pmouseX);
-        this.getCoroa().setY3(this.getCoroa().getY3() + mouseY - pmouseY);
-        this.getCoroa().setX4(this.getCoroa().getX4() + mouseX - pmouseX);
-        this.getCoroa().setY4(this.getCoroa().getY4() + mouseY - pmouseY);
-        // Cristal
-        this.getCristal().setPosX(this.getCristal().getPosX() + mouseX - pmouseX);
-        this.getCristal().setPosY(this.getCristal().getPosY() + mouseY - pmouseY);
-        // Ponteiro
-        this.getPonteiroS().setX1(this.getPonteiroS().getX1() + mouseX - pmouseX);
-        this.getPonteiroS().setY1(this.getPonteiroS().getY1() + mouseY - pmouseY);
-        this.getPonteiroM().setX1(this.getPonteiroM().getX1() + mouseX - pmouseX);
-        this.getPonteiroM().setY1(this.getPonteiroM().getY1() + mouseY - pmouseY);
-        this.getPonteiroH().setX1(this.getPonteiroH().getX1() + mouseX - pmouseX);
-        this.getPonteiroH().setY1(this.getPonteiroH().getY1() + mouseY - pmouseY);
-        this.getPonteiroS().setX2(this.getPonteiroS().getX2() + mouseX - pmouseX);
-        this.getPonteiroS().setY2(this.getPonteiroS().getY2() + mouseY - pmouseY);
-        this.getPonteiroM().setX2(this.getPonteiroM().getX2() + mouseX - pmouseX);
-        this.getPonteiroM().setY2(this.getPonteiroM().getY2() + mouseY - pmouseY);
-        this.getPonteiroH().setX2(this.getPonteiroH().getX2() + mouseX - pmouseX);
-        this.getPonteiroH().setY2(this.getPonteiroH().getY2() + mouseY - pmouseY);
-        // Pulseira
-        this.getPulseira().setPosX(this.getPulseira().getPosX() + mouseX - pmouseX);
-        this.getPulseira().setPosY(this.getPulseira().getPosY() + mouseY - pmouseY);
+    if (mousePressed == true && mouseButton == LEFT && mouseX>0 && mouseX<width && mouseY>0 && mouseY<height) {
+      if (r <= this.getCristal().getRadius()/2){        
+        this.setNewPos(mouseX - pmouseX, mouseY - pmouseY);
       }
+    }
+    // Limitando a janela para que não seja possível sumir com o relógio da tela
+    if (this.getCristal().getPosX() <= 0) {
+      this.setNewPos(-this.getCristal().getPosX(), 0);
+    }
+    if (this.getCristal().getPosX() >= width) {
+      this.setNewPos(-this.getCristal().getPosX()+width, 0);
+    }
+    if (this.getCristal().getPosY() <= 0) {
+      this.setNewPos(0, -this.getCristal().getPosY());
+    }
+    if (this.getCristal().getPosY() >= height) {
+      this.setNewPos(0, -this.getCristal().getPosY()+height); 
     }
   }
   
+  // Display do relogio
   public void display() {
     // Atualizando ponteiros
     float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
@@ -135,7 +155,7 @@ public class Relogio {
     this.getPonteiroH().display();
     this.getCoroa().display();
     
+    // Deslocamento do relogio
     this.setDesloca();
-    
   }
 }

@@ -100,7 +100,9 @@ public class Coroa {
     this.y4 = _y4;
   }
   
+  // Display da Coroa
   public void display(){
+    // Desenhando o botão na lateral superior direita do relogio
     stroke(c);
     fill(c);
     quad(x1,y1,x2,y2,x3,y3,x4,y4);
