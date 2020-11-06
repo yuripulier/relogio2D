@@ -79,7 +79,8 @@ public class Relogio {
     
   private void setDesloca() {
     float r = sqrt(pow(abs(getCristal().getPosX() - mouseX),2) + pow(abs(getCristal().getPosY() - mouseY),2));
-    if(mousePressed == true && mouseButton == LEFT) {
+    // Deslocamento do relogio
+    if(mousePressed == true && mouseButton == LEFT && mouseX>0 && mouseX<width && mouseY>0 && mouseY<height) {
       if( r <= getCristal().getRadius()/2 ){
         // Bisel
         this.getBisel().setPosX(this.getBisel().getPosX() + mouseX - pmouseX);
@@ -133,7 +134,7 @@ public class Relogio {
     this.getPonteiroM().display();
     this.getPonteiroH().display();
     this.getCoroa().display();
-
+    
     this.setDesloca();
     
   }

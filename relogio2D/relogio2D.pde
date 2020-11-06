@@ -72,7 +72,7 @@ void draw() {
   relogio.display();
 }
 
-// Le o video a cada frame
+// Metodo que le o video a cada frame
 void movieEvent(Movie m) {
   m.read();
 }
