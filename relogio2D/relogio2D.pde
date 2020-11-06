@@ -34,6 +34,7 @@ void setup(){
   // Musica e video
   music = new SoundFile(this, "music.mp3");
   music.play();
+  music.loop();
   video = new Movie(this, "C:/Users/yuric/Desktop/relogio2D/video.mp4");
   video.frameRate(60);
   video.play();
@@ -50,25 +51,25 @@ void setup(){
   ponteiroS = new Ponteiro(color(70,70,70,0), color(70,70,70), 2.5, centerX, centerY, centerX, centerY - cristal.getRadius()/2.5, 0.0);
   ponteiroM = new Ponteiro(color(50,50,50), color(255,255,255), 2, centerX, centerY, centerX, centerY - cristal.getRadius()/2.8, 0.0);
   ponteiroH = new Ponteiro(color(50,50,50), color(255,255,255), 2, centerX, centerY, centerX, centerY - cristal.getRadius()/4.6, 0.0);
-  pulseira = new Pulseira(img);
+  pulseira = new Pulseira(img, 210, 87);
   // Objeto Relogio, que une cada classe das diferentes peças de um relógio
   relogio = new Relogio(bisel, coroa, cristal, ponteiroS, ponteiroM, ponteiroH, pulseira);
 }
 
 void ambiente() {
+  background(255);
+  image(video, 0, -50, width+50, height+100);
   if(music.isPlaying() == true && (key == 'm' || key == 'M')) 
-    music.pause();
+    music.stop();
   else if(music.isPlaying() == false  && (key == 'p' || key == 'P')) 
     music.play();
 }
 
 void draw() {
   // Musica e video do ambiente
-  image(video, 0, -50, width+50, height+100);
   ambiente();
   // Display do relogio
   relogio.display();
-  print("\n"+mouseX+" : " + mouseY);
 }
 
 // Le o video a cada frame
