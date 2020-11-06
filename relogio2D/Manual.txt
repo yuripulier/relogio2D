@@ -1,0 +1,28 @@
+========================================================================================
+===================================Projeto Relogio 2D===================================
+========================================================================================
+
+Objetivo:
+    Projeto proposto pela disciplina de Computação Gráfica com o intuito
+de criar um relogio analogico de pulso utilizando recursos do Processing.
+ 
+Observação Inicial:
+    Para que a execução do programa possa acontecer, deve ser alterado o Path
+do vídeo, para o caminho em que a pasta baixada se encontra. Uma solução para
+isso será:
+	1 - Abra a pasta onde o arquivo do projeto foi baixado;
+	2 - No caminho do arquivo (barra superior), copie o caminho que nela apresenta;
+	3 - No projeto já aberto utilizando o processing, encontre a variável PATH_FILE 
+e substitua/insira o caminho copiado. Lembre também de trocar as barras "\" para "/". 
+	4 - Execute o código normalmente.
+ 
+Funcionalidades:
+    Após a execução do programa, pode-se escolher as seguintes opções:
+	Movimentar o Relógio - Botão esquerdo apenas no círculo do relógio.
+        Luz                  - Botão direito apenas no botão da coroa do relógio.
+        Stop/Play da música  - Tecla M para stop e P para o play.
+        Pause do ponteiro    - Tecla S para pausar os ponteiros do relógio.
+
+Integrantes:
+    Yuri Celeste Pulier.
+    Ayrton Cossuol.
