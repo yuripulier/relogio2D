@@ -76,11 +76,21 @@ public class Relogio {
   public void setPulseira(Pulseira _pulseira) {
     this.pulseira = _pulseira;
   }
+
+    
+  public void setDesloca() {
+    float r = sqrt(pow(abs(getCristal().getPosX() - mouseX),2) + pow(abs(getCristal().getPosY() - mouseY),2));
+    if(mousePressed == true && mouseButton == LEFT) {
+      if( r <= getCristal().getRadius() ){
+        print("deu");  
+      }
+    }
+  }
   
   public void display() {
     // Atualizando ponteiros
     float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
-    float m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI; 
+    float m = map(minute(), 0, 60, 0, TWO_PI) - HALF_PI; 
     float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) -(2*PI)/3;
     this.getPonteiroS().setTime(s);
     this.getPonteiroM().setTime(m);
@@ -94,5 +104,9 @@ public class Relogio {
     this.getPonteiroM().display();
     this.getPonteiroH().display();
     this.getCoroa().display();
+    
+    // Musica
+    //if(music.isPlaying() == true && (key == 'm' || key == 'M')) music.pause();
+    //else if(music.isPlaying() == false  && (key == 'p' || key == 'P')) music.play();
   }
 }

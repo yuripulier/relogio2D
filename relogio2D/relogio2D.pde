@@ -1,8 +1,12 @@
 // Imports
 PImage img;
 PFont f, fMarca;
+import processing.sound.*;
+import processing.video.*;
 
 // Declaração de objetos
+SoundFile music;
+Movie video;
 Bisel bisel;
 Cristal cristal;
 Ponteiro ponteiroS = new Ponteiro();
@@ -27,11 +31,19 @@ void setup(){
   fMarca = createFont("Mistral",18,true);
   textFont(fMarca,10);
   
+  // Musica e video
+  music = new SoundFile(this, "music.mp3");
+  music.play();
+  video = new Movie(this, "C:/Users/yuric/Desktop/relogio2D/video.mp4");
+  video.frameRate(60);
+  video.play();
+  video.loop();
+  
   // Dimenssões do centro da tela
   float centerX = width/2;
   float centerY = height/2;
   
-  // Classes utilizadas para criação do relógio
+  // Objetos utilizadas para criação do relógio
   bisel = new Bisel(color(30,30,30), centerX, centerY, 280, 25);
   coroa = new Coroa(color(30), 476, 215, 486, 215, 493, 225, 489, 237);
   cristal = new Cristal(color(20,20,20,100), centerX, centerY, 260);
@@ -39,11 +51,27 @@ void setup(){
   ponteiroM = new Ponteiro(color(50,50,50), color(255,255,255), 2, centerX, centerY, centerX, centerY - cristal.getRadius()/2.8, 0.0);
   ponteiroH = new Ponteiro(color(50,50,50), color(255,255,255), 2, centerX, centerY, centerX, centerY - cristal.getRadius()/4.6, 0.0);
   pulseira = new Pulseira(img);
-  // Classe Relogio, que une cada classe das diferentes peças de um relógio
+  // Objeto Relogio, que une cada classe das diferentes peças de um relógio
   relogio = new Relogio(bisel, coroa, cristal, ponteiroS, ponteiroM, ponteiroH, pulseira);
 }
 
-void draw(){
+void ambiente() {
+  if(music.isPlaying() == true && (key == 'm' || key == 'M')) 
+    music.pause();
+  else if(music.isPlaying() == false  && (key == 'p' || key == 'P')) 
+    music.play();
+}
+
+void draw() {
+  // Musica e video do ambiente
+  image(video, 0, -50, width+50, height+100);
+  ambiente();
   // Display do relogio
   relogio.display();
+  print("\n"+mouseX+" : " + mouseY);
+}
+
+// Le o video a cada frame
+void movieEvent(Movie m) {
+  m.read();
 }

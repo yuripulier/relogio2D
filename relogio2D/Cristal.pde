@@ -86,8 +86,8 @@ public class Cristal {
     setDay();
     setLight(c, 4); 
     // Iluminar o relogio
-    if (mousePressed == true && mouseButton == LEFT) {
-      if (mouseX >= coroa.getX1() && mouseX <= coroa.getX3() && mouseY >= coroa.getY1() && mouseY <= coroa.getY3()) {
+    if (mousePressed == true && mouseButton == RIGHT) {
+      if (mouseX >= coroa.getX1() && mouseX <= coroa.getX4() && mouseY >= coroa.getY1() && mouseY <= coroa.getY4()) {
         int l = 20;
         fColor = color(72,209,204);
         setLight(color(red(cristal.getColor())+l,green(cristal.getColor())+l,blue(cristal.getColor())+l, 18), 5);
