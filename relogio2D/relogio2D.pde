@@ -25,6 +25,13 @@ void setup(){
   // Imagem da pulseira
   img = loadImage("pulseira.png");
   
+  println("================================MENU================================");
+  print("Movimentar o Relógio - Botão esquerdo apenas no circulo do relógio. \n");
+  print("Luz                  - Botão direito apenas no botão do relógio. \n");
+  print("Stop/Play da música  - Tecla M para pausar e P para o play. \n");
+  print("Pause do ponteiro    - Tecla S para pausar o ponteiro do relógio. \n");
+  println("====================================================================");
+  
   // Fontes de texto utilizadas
   f = createFont("Bahnschrift",14,true);
   textFont(f,10);
@@ -35,7 +42,7 @@ void setup(){
   music = new SoundFile(this, "music.mp3");
   music.play();
   music.loop();
-  video = new Movie(this, "C:/Users/yuric/Desktop/relogio2D/video.mp4");
+  video = new Movie(this, "C:/Users/ayrto/Documents/GitHub/relogio2D/relogio2D/video.mp4");
   video.frameRate(60);
   video.play();
   video.loop();
